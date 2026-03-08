@@ -75,7 +75,7 @@ const empFields = [
 
 const db = window.supabase
   ? window.supabase.createClient(
-      'https://tjyjtonbupzmybznwixi.supabase.co',
+      'https://tjyjtonbupzmybznwixi.supabase.com',
       'sb_publishable_0IU4oNptoiqBh7jokkk6Qw_sBI-gYUH'
     )
   : null;
