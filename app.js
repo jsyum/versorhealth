@@ -25,7 +25,7 @@ const visitFields = [
   { id: "v_money", label: "Money Handling", opts: ["No money handling", "Receipts obtained", "Money handled no receipts", "N/A"], ref: "§240.1510(c)" },
   { id: "v_poc_adherence", label: "Services Match Plan of Care", opts: ["Yes all services per plan", "Deviation participant request", "Deviation safety concern", "Unable to complete plan"], ref: "§240.1510(b)", grp: "Compliance" },
   { id: "v_incident", label: "Incident / Concern", icon: "⚠️", opts: ["Nothing to report", "Abuse/neglect concern", "Fall or injury", "Emergency", "Other"], ref: "§240.1510(s)" },
-  { id: "v_hours", label: "Direct Service Hours", icon: "⏱", type: "text", placeholder: "e.g., 4.0 (quarter-hour increments)", ref: "§240.1531" }
+  { id: "v_hours", label: "Direct Service Hours", type: "text", placeholder: "e.g., 4.0 (quarter-hour increments)", ref: "§240.1531" }
 ];
 
 // PARTICIPANT RECORD FIELDS (office staff entry)
