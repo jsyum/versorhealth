@@ -13,7 +13,9 @@ const tabDefs = [
 // CAREGIVER VISIT FIELDS
 
 const visitFields = [
-  { id: "v_date", label: "Visit Date", type: "date", grp: "Visit Information" },
+  { id: "v_agency", label: "Agency", type: "select", opts: ["", "Chicago Home Health, Inc."], grp: "Visit Information" },
+  { id: "v_patient", label: "Patient Name", type: "text", placeholder: "Full name" },
+  { id: "v_date", label: "Visit Date", type: "date" },
   { id: "v_mobility", label: "Patient Mobility", opts: ["Independent", "Minimal assist", "Moderate assist", "Maximum assist", "Unable to ambulate"], grp: "Observation Fields" },
   { id: "v_appetite", label: "Appetite / Nutrition", opts: ["Ate full meal", "Ate partial meal", "Minimal intake", "Refused food", "Not observed"] },
   { id: "v_mood", label: "Mood / Affect", opts: ["Alert and engaged", "Calm but withdrawn", "Anxious or agitated", "Confused or disoriented", "Unresponsive"] },
@@ -130,7 +132,13 @@ function renderFields(p, fields, cid) {
     if (f.ref) h += '<span class="field-hint">' + f.ref + '</span>';
     h += '</div>';
 
-    if (f.type === 'date') {
+    if (f.type === 'select') {
+      h += '<select class="text-input" onchange="ti(\'' + p + '\',\'' + f.id + '\',this.value)">';
+      f.opts.forEach(o => {
+        h += '<option value="' + o + '">' + (o || 'Select agency') + '</option>';
+      });
+      h += '</select>';
+    } else if (f.type === 'date') {
       const today = new Date().toISOString().split('T')[0];
       if (!state[p][f.id]) state[p][f.id] = today;
       h += '<input class="text-input" type="date" value="' + state[p][f.id] + '" onchange="ti(\'' + p + '\',\'' + f.id + '\',this.value)">';
