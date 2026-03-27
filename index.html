@@ -4,117 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>Versor Health</title>
+<title>Versor Health — Compliance Infrastructure for Community Care</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'IBM Plex Sans',sans-serif;background:#0A192F;display:flex;justify-content:center;min-height:100vh}
-.app{max-width:460px;width:100%;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
-.hdr{background:#282838;padding:24px 20px 16px;color:#fff}
-.hdr-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;margin-bottom:4px}
-.hdr-ttl{font-size:22px;font-weight:700;margin-bottom:4px}
-.hdr-sub{font-size:13px;color:#cbd5e1;line-height:1.5}
-.tabs{display:flex;border-bottom:1px solid #e5e7eb;background:#f8fafc;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{flex:none;padding:12px 14px;background:0;border:none;border-bottom:3px solid transparent;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:#9ca3af;cursor:pointer;transition:.2s;white-space:nowrap}
-.tab.active{border-bottom-color:#1a1a2e;font-weight:700;color:#1a1a2e}
-.view{padding:16px;display:none}
-.view.active{display:block}
-.field{margin-bottom:18px}
-.field-label{font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.field-hint{font-size:10px;color:#9ca3af;font-weight:400;background:#f1f5f9;padding:2px 6px;border-radius:4px}
-.opts{display:flex;flex-wrap:wrap;gap:5px}
-.opt{padding:5px 11px;border-radius:18px;border:1px solid #d1d5db;background:#fff;color:#374151;font-family:'DM Sans',sans-serif;font-size:11.5px;cursor:pointer;transition:.15s}
-.opt.sel{border:2px solid #1a1a2e;background:#1a1a2e;color:#fff}
-.opt:hover:not(.sel){border-color:#9ca3af}
-.text-input{width:100%;padding:8px 12px;border:1px solid #d1d5db;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;color:#374151;outline:none;transition:border .2s}
-input[type="date"].text-input{box-sizing:border-box;min-width:0}
-.text-input:focus{border-color:#1a1a2e}
-.progress-wrap{margin-bottom:16px}
-.prog-lbl{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-.prog-bar{display:flex;gap:3px;margin-bottom:3px}
-.prog-seg{flex:1;height:4px;border-radius:2px;background:#e5e7eb;transition:.3s}
-.prog-seg.f{background:#22c55e}
-.prog-ct{font-size:11px;color:#9ca3af}
-.submit-btn{width:100%;padding:13px;background:#d1d5db;color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:default;transition:.2s;margin-top:8px}
-.submit-btn.rdy{background:#1a1a2e;cursor:pointer}
-.submit-btn.rdy:hover{background:#2d2d4e}
-.submitted{text-align:center;padding:50px 20px;display:none}
-.submitted.show{display:block}
-.form-area.hide{display:none}
-.chk-icon{font-size:44px;margin-bottom:12px}
-.s-ttl{font-size:18px;font-weight:600;color:#1a1a2e;margin-bottom:6px}
-.s-sub{font-size:13px;color:#6b7280;margin-bottom:20px}
-.flow-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;text-align:left;max-width:280px;margin:0 auto}
-.flow-lbl{font-size:11px;font-weight:600;color:#166534;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
-.flow-it{font-size:12px;color:#15803d;padding:3px 0;display:flex;align-items:center;gap:6px}
-.rst-btn{margin-top:20px;padding:9px 22px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer}
-.section-divider{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin:20px 0 12px;padding:8px 0;border-bottom:2px solid #e5e7eb}
-.section-divider:first-child{margin-top:0}
-.footer{padding:18px;border-top:1px solid #e5e7eb;background:#f8fafc}
-.footer-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;font-weight:600;margin-bottom:10px}
-.f-row{display:flex;gap:8px;align-items:baseline;margin-bottom:6px}
-.f-key{font-size:11px;font-weight:700;color:#1a1a2e;min-width:90px}
-.f-val{font-size:11px;color:#6b7280;line-height:1.5}
-.footer-sub{font-size:11px;color:#6b7280;line-height:1.5;margin-bottom:10px}
+body{font-family:'DM Sans',sans-serif;background:#0A192F;color:#fff;min-height:100vh}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:960px;margin:0 auto}
+.nav-brand{font-size:15px;font-weight:700;color:#fff;text-decoration:none}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-size:13px;color:#94a3b8;text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-links .cta{background:#fff;color:#0A192F;padding:7px 18px;border-radius:6px;font-weight:600}
+.nav-links .cta:hover{background:#e2e8f0;color:#0A192F}
+.hero{max-width:960px;margin:0 auto;padding:80px 24px 60px;display:flex;align-items:center;gap:48px}
+.hero-text{flex:1}
+.hero h1{font-size:36px;font-weight:700;line-height:1.2;margin-bottom:16px;color:#fff}
+.hero p{font-size:16px;color:#94a3b8;line-height:1.6;margin-bottom:36px}
+.hero-cta{display:inline-block;background:#fff;color:#0A192F;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:background .2s}
+.hero-cta:hover{background:#e2e8f0}
+.features{max-width:960px;margin:0 auto;padding:40px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.feat{background:#112240;border:1px solid #1e3a5f;border-radius:10px;padding:28px 22px}
+.feat-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#64748b;margin-bottom:8px;font-weight:600}
+.feat-title{font-size:16px;font-weight:700;margin-bottom:8px;color:#fff}
+.feat-desc{font-size:13px;color:#94a3b8;line-height:1.6}
+.bottom{text-align:center;padding:0 24px 40px;max-width:960px;margin:0 auto}
+.bottom-text{font-size:12px;color:#475569}
+.bottom-text a{color:#64748b;text-decoration:none}
+@media(max-width:640px){
+.hero{padding:50px 20px 40px;flex-direction:column;text-align:center}
+.hero h1{font-size:26px}
+.hero p{font-size:14px}
+.hero-img img{max-width:220px}
+.features{grid-template-columns:1fr;padding:20px 20px 50px}
+}
+.hero-img{flex-shrink:0}
+.hero-img img{max-width:260px;width:100%;display:block}
 </style>
 </head>
 <body>
-<div class="app">
-<div class="hdr">
-<div class="hdr-lbl">Data Infrastructure for Community Care Providers</div>
-<div class="hdr-ttl">Versor Health</div>
-<div class="hdr-sub">Structured capture, Compliance ready</div>
+<nav class="nav">
+<a href="index.html" class="nav-brand">Versor Health</a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="pricing.html">Pricing</a>
+<a href="app.html" class="cta">Get Started</a>
 </div>
-<div class="tabs" id="tab-bar"></div>
+</nav>
 
-<div class="view active" id="v-visit">
-<div class="form-area" id="visit-form">
-<div class="progress-wrap"><div class="prog-lbl">Visit Documentation</div><div class="prog-bar" id="visit-prog"></div><div class="prog-ct" id="visit-ct"></div></div>
-<div id="visit-fields"></div>
-<button class="submit-btn" id="visit-sub" onclick="submitForm('visit')">Submit Visit</button>
+<div class="hero">
+<div class="hero-text">
+<h1>Visits documented in 30 seconds</h1>
+<p>Structured visit documentation for Community Care Program providers. Replace free text with inspection-ready, queryable records.</p>
+<a href="app.html" class="hero-cta">Get Started</a>
 </div>
-<div class="submitted" id="visit-done">
-<div class="chk-icon">✓</div><div class="s-ttl">Visit Documented</div><div class="s-sub">Structured fields captured in under 60 seconds</div>
-<div class="flow-box"><div class="flow-lbl">Data flows to:</div>
-<div class="flow-it"><span>●</span> Patient care record</div><div class="flow-it"><span>●</span> Aggregated dataset</div></div>
-<button class="rst-btn" onclick="resetForm('visit')">New Visit</button>
-</div>
+<div class="hero-img"><img src="versor_health_mobile.png" alt="Versor Health app on mobile"></div>
 </div>
 
-<div class="view" id="v-participant">
-<div class="form-area" id="part-form">
-<div class="progress-wrap"><div class="prog-lbl">Participant Record</div><div class="prog-bar" id="part-prog"></div><div class="prog-ct" id="part-ct"></div></div>
-<div id="part-fields"></div>
-<button class="submit-btn" id="part-sub" onclick="submitForm('part')">Save Participant Record</button>
+<div class="features">
+<div class="feat">
+<div class="feat-label">Caregivers</div>
+<div class="feat-title">Visit documentation</div>
+<div class="feat-desc">Observations, ADLs, and safety checks documented in under 60 seconds at the point of care.</div>
 </div>
-<div class="submitted" id="part-done">
-<div class="chk-icon">✓</div><div class="s-ttl">Participant Record Saved</div><div class="s-sub">Inspection-ready and instantly queryable</div>
-<button class="rst-btn" onclick="resetForm('part')">Edit Record</button>
+<div class="feat">
+<div class="feat-label">Office Staff</div>
+<div class="feat-title">Participant and staff records</div>
+<div class="feat-desc">Searchable personnel and participant files, including training tracking and plans of care.</div>
 </div>
+<div class="feat">
+<div class="feat-label">The Data</div>
+<div class="feat-title">Instantly retrievable records</div>
+<div class="feat-desc">Every entry is timestamped. Retrieve six months of audit-ready records in a single query, filterable by date, participant, and service type </div>
 </div>
-
-<div class="view" id="v-employee">
-<div class="form-area" id="emp-form">
-<div class="progress-wrap"><div class="prog-lbl">Employee Compliance</div><div class="prog-bar" id="emp-prog"></div><div class="prog-ct" id="emp-ct"></div></div>
-<div id="emp-fields"></div>
-<button class="submit-btn" id="emp-sub" onclick="submitForm('emp')">Save Employee Record</button>
-</div>
-<div class="submitted" id="emp-done">
-<div class="chk-icon">✓</div><div class="s-ttl">Employee Record Saved</div><div class="s-sub">All compliance documentation current</div>
-<button class="rst-btn" onclick="resetForm('emp')">Edit Record</button>
+<div class="feat">
+<div class="feat-label">Trust</div>
+<div class="feat-title">HIPAA compliant and secure</div>
+<div class="feat-desc">Row-level security, data encrypted in transit, and hosted securely on AWS infrastructure with SOC 2 certification.</div>
 </div>
 </div>
 
-<div class="footer">
-<div class="footer-lbl">Convenience Matters</div>
-<div class="footer-sub">Versor Health is a compliance-support tool aligned with categories defined in 89 Ill. Adm. Code pt. 240.</div>
-<div class="f-row"><div class="f-key">Caregivers</div><div class="f-val">30 - 60 sec structured visit documentation</div></div>
-<div class="f-row"><div class="f-key">Office staff</div><div class="f-val">Inspection-ready plans of care and participant records in queryable format</div></div>
-<div class="f-row"><div class="f-key">The dataset</div><div class="f-val">Timestamped, aggregatable fields</div></div>
+<div class="bottom">
+<div class="bottom-text">Versor Health | In compliance with 89 Ill. Adm. Code pt. 240 &nbsp;|&nbsp; <a href="tel:9175232721">917-523-2721</a> &nbsp;|&nbsp; <a href="mailto:support@versorhealth.com" style="color:#64748b;text-decoration:none">support@versorhealth.com</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></div>
 </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
 </body>
 </html>

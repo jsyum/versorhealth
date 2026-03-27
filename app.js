@@ -1,7 +1,3 @@
-// Community Care Data Platform — app.js
-// Structured data capture for Illinois CCP in-home services
-// Fields derived from 89 Ill. Admin. Code Part 240
-
 // TAB DEFINITIONS
 
 const tabDefs = [
